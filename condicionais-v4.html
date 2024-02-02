@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+    <div id="app"> 
+        <template v-if="logado" >
+            <p>Usuario Logado: {{ nome }}</p>    
+            <p>Perfil: admin</p>  
+            <button @click="logado = false">Sair</button>     
+        </template> 
+        <template v-else-if="anonimo">
+            <p >Navegando como anonimo</p>
+            <button @click="anonimo = false">Sair</button>    
+        </template>
+        <template v-else>
+            <p>Nenhum Usuario Logado</p>
+            <input type="checkbox" v-model="anonimo" @click="anonimo"> 
+            <button @click="logado = true">Entrar</button>  
+        </template>
+        <hr>
+        <footer v-show="logado">
+            Desenvolvido para voce!
+        </footer>
+        <footer v-show="anonimo">
+            Desenvolvido para voce que nao conheco!
+        </footer>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+               nome: 'Michel',
+               logado: false,
+               anonimo: false,
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+
+</html>
