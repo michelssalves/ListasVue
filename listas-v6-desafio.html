@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+    <div id="app"> 
+        <h2>#01</h2>
+        <div>
+            <button @click="ex1 = !ex1">Alterar</button>
+
+            <p v-if="ex1">Voce quer me ver ...</p>
+            <p v-else>... ou eu</p>
+            <p v-show="ex1">Voce quer me ver ...</p>
+            <p v-show="!ex1">... ou eu</p>
+        </div>
+        <h2>#02</h2>
+        <ul>
+            <li v-for="(nome, i) in nomes" :key="i">
+                {{ i }} - {{ nome }}
+            </li>
+        </ul>
+        <h2>#03</h2>
+        <ul>
+            <li v-for="(livro, key, i) in livros" :key="i">
+                {{ i }} - {{ key }} - {{ livro }}
+            </li>
+        </ul>
+        <h2>#04</h2>
+        <ul>
+            <li v-for="(aluno, key, i) in alunos" :key="i">
+                <template v-if="!Array.isArray(aluno)">
+                    {{ aluno }}
+                </template>
+                <template v-else>
+                    Notas:
+                    <ul>
+                        <li v-for="nota in aluno"> {{ nota }}</li>
+                    </ul>   
+                </template>
+            </li>
+        </ul>
+        <h2>#05</h2>
+        <h2>#6</h2>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+               ex1: true, 
+               livros: {
+                    titulo: 'O Senhor dos Anéis',
+                    autor: 'J.R.R Tolkiens',
+                    volume: '3'
+               },
+               alunos: {
+                    id: 10,
+                    nome: 'Michel',
+                    notas: [7.67, 8.33, 6.98, 9.21]
+                },
+                nomes: ['Michel', 'Rafaele', 'Mayumi'] 
+            },
+            methods:{
+
+            }
+        })
+    </script>
+    <style>
+        ul{
+            list-style: none;
+        }
+        h1, p{
+            display: inline;
+        }
+    </style>
+</body>
+
+</html>
